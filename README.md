@@ -8,13 +8,18 @@ Based on Laravel 5.1
 
 Install as you would install a Laravel application
 
-./artisan install
+./composer.phar install
 
 Give write permissions to webserver to the following folders:
 * storage
 * bootstrap/cache
 * public/storage
 * resources/views
+
+### Install troubleshooting
+1. Check apache logs for errors
+1. Turn debug ON in the file config/app.php
+1. Check that you generate the application key with ./artisan key:generate and put in config/app.php
 
 ## Features
 
