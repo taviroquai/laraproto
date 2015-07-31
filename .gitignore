@@ -1,0 +1,8 @@
+/nbproject
+/vendor
+/config/local
+/storage/framework/cache
+/storage/framework/sessions
+/storage/framework/views
+/storage/logs
+.env

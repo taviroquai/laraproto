@@ -1,0 +1,14 @@
+
+/* 
+    Created on : 21/jul/2015, 16:09:27
+    Author     : mafonso
+*/
+
+#mainContent {
+    margin-top: 60px;
+}
+
+#gallery .delete {
+    position: relative;
+    top: -54px;
+}
