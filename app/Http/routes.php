@@ -23,17 +23,19 @@ Route::model('page', 'App\Page');
 Route::group(['middleware' => ['visit']], function () {
     
     // Run all pages
-    foreach(App\Page::where('active', 1)->get() as $page) {
-        
-        // Create page route
-        Route::get($page->route, function () use ($page) {
-            
-            // Get page data file
-            $data = (array) include($page->getDataPath());
-            
-            // Display page view file
-            return view($page->getView(), $data);
-        });
+    if (\Schema::hasTable('pages')) {
+        foreach(App\Page::where('active', 1)->get() as $page) {
+
+            // Create page route
+            Route::get($page->route, function () use ($page) {
+
+                // Get page data file
+                $data = (array) include($page->getDataPath());
+
+                // Display page view file
+                return view($page->getView(), $data);
+            });
+        }
     }
 });
 
