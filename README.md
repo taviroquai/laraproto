@@ -28,7 +28,7 @@ p: admin
 ## Features
 
 1. Authentication
-1. Backoffice
+1. Backoffice (based on Twitter Bootstrap)
     1. Users
     1. Roles
     1. Permissions
