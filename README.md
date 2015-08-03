@@ -21,6 +21,10 @@ Give write permissions to webserver to the following folders:
 1. Turn debug ON in the file config/app.php
 1. Check that you generate the application key with ./artisan key:generate and put in config/app.php
 
+## Default Login
+u: admin@isp.com
+p: admin
+
 ## Features
 
 1. Authentication
