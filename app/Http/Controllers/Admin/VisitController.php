@@ -24,7 +24,12 @@ class VisitController extends BaseController
      */
     public function json()
 	{
-		return response()->json(['data' => Visit::with('content', 'user')->get()]);
+        $visits = Visit::with('content', 'user')
+                ->addSelect(\DB::raw('visits.*, count(id) as visits'))
+                ->groupBy('http_url', 'user_id', 'content_id')
+                ->orderBy('created_at', 'desc')
+                ->get();
+		return response()->json(['data' => $visits]);
 	}
     
     /**

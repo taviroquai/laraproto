@@ -13,21 +13,23 @@
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th class="col-md-2">Date</th>
-                    <th class="col-md-2">IP</th>
+                    <th>Last Visit</th>
+                    <th>IP</th>
                     <th>Path</th>
                     <th>Content</th>
-                    <th class="col-md-2">User</th>
+                    <th>User</th>
+                    <th>Visits</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Date</th>
+                    <th>Last Visit</th>
                     <th>IP</th>
                     <th>Path</th>
-                    <th>User</th>
                     <th>Content</th>
+                    <th>User</th>
+                    <th>Visits</th>
                 </tr>
             </tfoot>
         </table>
@@ -44,17 +46,30 @@
         "columns": [
             { "data": "created_at" },
             { "data": "ip" },
-            { "data": "http_path" },
+            { 
+                "render": function ( data, type, full, meta ) {
+                    return '<a href="' + full.http_path + '" target="_blank">' + full.http_path + '</a>';
+                } 
+            },
             {
                 "render": function ( data, type, full, meta ) {
-                    return full.content ? full.content.title : '';
+                    return full.content ? 
+                        '<a href="{{ url('admin/contents/form') }}/' 
+                        + full.content.id + '">' + full.content.title 
+                        + '</a>' 
+                    : '';
                 }
             },
             {
                 "render": function ( data, type, full, meta ) {
-                    return full.user ? full.user.name : 'Anonymous';
+                    return full.user ? 
+                        '<a href="{{ url('admin/users/form') }}/' 
+                        + full.user.id + '">' + full.user.name 
+                        + '</a>' 
+                    : 'Anonymous';
                 }
-            }
+            },
+            { "data": "visits" }
         ]
     });
 
