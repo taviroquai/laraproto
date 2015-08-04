@@ -13,7 +13,7 @@
         <h1>Permissions</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/permissions/form') }}"><i class="fa fa-stop"></i> Create Permission</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/permissions/form') }}"><i class="fa fa-ban"></i> Create Permission</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">

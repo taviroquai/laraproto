@@ -13,7 +13,7 @@
         <h1>Contents</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/contents/form') }}"><i class="fa fa-group"></i> Create Content</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/contents/form') }}"><i class="fa fa-file"></i> Create Content</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">

@@ -18,7 +18,7 @@
         </div>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/pages/form') }}"><i class="fa fa-group"></i> Create Page</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/pages/form') }}"><i class="fa fa-newspaper-o"></i> Create Page</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">

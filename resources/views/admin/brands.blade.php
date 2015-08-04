@@ -13,7 +13,7 @@
         <h1>Site Brand</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/brands/form') }}"><i class="fa fa-group"></i> Create Brand</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/brands/form') }}"><i class="fa fa-newspaper-o"></i> Create Brand</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">

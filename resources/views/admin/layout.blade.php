@@ -38,26 +38,26 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar">
-                <li><a href="{{ url('/admin/contents/list') }}">Content</a></li>
+                <li><a href="{{ url('/admin/contents/list') }}"><i class="fa fa-files-o"></i> Content</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">System <span class="caret"></span></a>
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i> System <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/admin/pages/list') }}">Pages</a></li>
-                        <li><a href="{{ url('/admin/users/list') }}">Users</a></li>
-                        <li><a href="{{ url('/admin/roles/list') }}">Roles</a></li>
-                        <li><a href="{{ url('/admin/permissions/list') }}">Permission</a></li>
-                        <li><a href="{{ url('/admin/brands/list') }}">Site Brand</a></li>
-                        <li><a href="{{ url('/admin/visits/list') }}">Visits</a></li>
+                        <li><a href="{{ url('/admin/pages/list') }}"><i class="fa fa-newspaper-o"></i> Pages</a></li>
+                        <li><a href="{{ url('/admin/users/list') }}"><i class="fa fa-user"></i> Users</a></li>
+                        <li><a href="{{ url('/admin/roles/list') }}"><i class="fa fa-users"></i> Roles</a></li>
+                        <li><a href="{{ url('/admin/permissions/list') }}"><i class="fa fa-ban"></i> Permission</a></li>
+                        <li><a href="{{ url('/admin/brands/list') }}"><i class="fa fa-trademark"></i> Site Brand</a></li>
+                        <li><a href="{{ url('/admin/visits/list') }}"><i class="fa fa-eye"></i> Visits</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a target="_blank" href="{{ url('/') }}">View Site</a></li>
+                <li><a target="_blank" href="{{ url('/') }}"><i class="fa fa-globe"></i> View Site</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#">{{ \Auth::user()->name }} <span class="caret"></span></a>
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ \Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('admin/profile') }}">Settings</a></li>
-                        <li><a href="{{ url('auth/logout') }}">Logout</a></li>
+                        <li><a href="{{ url('admin/profile') }}"><i class="fa fa-cog"></i> My Account</a></li>
+                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
                     </ul>
                 </li>
             </ul>
