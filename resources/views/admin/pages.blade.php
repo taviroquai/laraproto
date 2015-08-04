@@ -13,8 +13,7 @@
         <h1>Pages</h1>
         
         <div class="alert alert-danger">
-            <p><strong>Warning!</strong> This feature opens a big security breach in your application.</p>
-            <p>By default only admin users are allowed to use this feature but remove the Pages menu if you do not want to take risks.</p>
+            <p><strong>Warning!</strong> This feature allows an admin user to enter PHP code. You <strong>should</strong> remove the Pages menu if this feature is not necessary.</p>
         </div>
         
         <p class="clearfix">

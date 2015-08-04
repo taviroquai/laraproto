@@ -61,7 +61,13 @@ class PageController extends BaseController
         $page->save();
         
         try {
-            file_put_contents($page->getViewPath(), $input['content']);
+            
+            // Do not overwrite existing view file
+            if (!empty($input['id']) 
+                || (empty($input['id']) && !file_exists($page->getViewPath()))
+            ) {
+                file_put_contents($page->getViewPath(), $input['content']);
+            }
             file_put_contents($page->getDataPath(), $input['data']);
 
             // Response
