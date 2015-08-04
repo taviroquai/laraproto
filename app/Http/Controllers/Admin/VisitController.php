@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use App\Visit;
+use Session;
 
 class VisitController extends BaseController
 {
@@ -37,10 +38,14 @@ class VisitController extends BaseController
      * 
      * @return \Illuminate\Http\JsonResponse
      */
-    public function visitsTotalsJson()
+    public function visitsTotalsJson($date_start, $date_end)
     {
+        Session::put('visits_start', $date_start);
+        Session::put('visits_end', $date_end);
         $totals = \DB::table('visits')
             ->select(\DB::raw('unix_timestamp(created_at) as x, count(id) as y'))
+            ->where('created_at', '>=', $date_start)
+            ->where('created_at', '<=', $date_end)
             ->groupBy(\DB::raw('day(created_at)'))
             ->get();
         $data = [];

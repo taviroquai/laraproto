@@ -104,7 +104,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Visits
     Route::get('visits', 'VisitController@json');
     Route::get('visits/list', 'VisitController@index');
-    Route::get('visits/totals', 'VisitController@visitsTotalsJson');
+    Route::get('visits/totals/{date_start}/{date_end}', 'VisitController@visitsTotalsJson');
     
 });
 
