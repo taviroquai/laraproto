@@ -51,13 +51,14 @@ class UserController extends BaseController
         $user->update($request->all());
         if (!empty($request->get('password'))) {
             $user->password = \Hash::make($request->get('password'));
+            $user->save();
         }
         
-        if ($user->save()) {
-            \Session::set('status', 'Settings saved');
-            return \Redirect::to('admin/profile');
-        }
+        // Process avatar
+        $user->saveAvatar(\Request::file('avatar'), $request->get('image_max_width'));
         
+        \Session::set('status', 'Settings saved');
+        return \Redirect::to('admin/profile');
     }
     
     /**

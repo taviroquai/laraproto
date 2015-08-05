@@ -116,6 +116,7 @@ return [
     'twitter' => 'Twitter',
     'facebook' => 'Facebook',
     'gplus' => 'Google Plus',
+    'avatar' => 'Avatar',
     
     // Visit
     'last_visit' => 'Last Visit',

@@ -18,6 +18,7 @@
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
                 <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">{{ trans('backoffice.general') }}</a></li>
+                <li role="presentation"><a href="#social" aria-controls="social" role="tab" data-toggle="tab">{{ trans('backoffice.social_ids') }}</a></li>
                 <li role="presentation"><a href="#roles" aria-controls="roles" role="tab" data-toggle="tab">{{ trans('backoffice.roles') }}</a></li>
             </ul>
             
@@ -50,7 +51,9 @@
                         <input class="form-control" type="password" name="password_confirmation"  id="registerPassword2">
                     </div>
                     
-                    <h4>{{ trans('backoffice.social_ids') }}</h4>
+                </div>
+                <div role="tabpanel" class="tab-pane fade" id="social">
+                    
                     <div class="form-group">
                         <label for="twitter_id">{{ trans('backoffice.twitter') }}</label>
                         <input class="form-control" type="text" name="twitter_id" id="twitter_id" value="{{ old('twitter_id', $user->twitter_id) }}">
