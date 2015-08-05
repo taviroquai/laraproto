@@ -7,7 +7,7 @@
     <div class="col-md-12">
         <h1>Register</h1>
 
-        <form method="POST" action="/auth/register">
+        <form method="POST" action="{{ url('/auth/register') }}">
             {!! csrf_field() !!}
 
             <div class="form-group">

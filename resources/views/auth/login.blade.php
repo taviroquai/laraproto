@@ -12,7 +12,7 @@
         
         <h1>Login</h1>
         
-        <form method="POST" action="/auth/login">
+        <form method="POST" action="{{ url('/auth/login') }}">
             
             {!! csrf_field() !!}
 

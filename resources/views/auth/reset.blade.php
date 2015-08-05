@@ -12,7 +12,7 @@
         
         <h1>New Password</h1>
         
-        <form method="POST" action="/password/reset">
+        <form method="POST" action="{{ url('/password/reset') }}">
             
             {!! csrf_field() !!}
             
