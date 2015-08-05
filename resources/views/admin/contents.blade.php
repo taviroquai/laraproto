@@ -10,24 +10,24 @@
 <div class="row">
     <div class="col-md-12">
         
-        <h1>Contents</h1>
+        <h1>{{ trans('backoffice.contents') }}</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/contents/form') }}"><i class="fa fa-group"></i> Create Content</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/contents/form') }}"><i class="fa fa-file"></i> {{ trans('backoffice.create_content') }}</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Title</th>
-                    <th class="col-md-2">Options</th>
+                    <th>{{ trans('backoffice.title') }}</th>
+                    <th class="col-md-2">{{ trans('backoffice.options') }}</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Title</th>
-                    <th>Options</th>
+                    <th>{{ trans('backoffice.title') }}</th>
+                    <th>{{ trans('backoffice.options') }}</th>
                 </tr>
             </tfoot>
         </table>

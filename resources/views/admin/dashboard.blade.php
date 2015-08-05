@@ -2,26 +2,40 @@
 @extends('admin/layout')
 
 @section('style')
+<link href="{{ asset('assets/css/datepicker3.css') }}" rel="stylesheet" type="text/css">
 <link href="{{ asset('assets/css/jquery.dataTables.min.css') }}" rel="stylesheet" type="text/css">
 @stop
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h1>Dashboard</h1>
+        <h1>{{ trans('backoffice.dashboard') }}</h1>
 
-        <h2>Visits</h2>
+        <h2>{{ trans('backoffice.visits') }}</h2>
+        <form id="formVisits" method="POST" action="{{ url('/admin/dashboard') }}" class="form-inline pull-right">
+            <div class="form-group">
+                <label for="visits_start">{{ trans('backoffice.from') }}</label>
+                <input class="form-control" type="text" name="visits_start" id="visits_start" value="{{ $visits_start }}">
+            </div>
+            <div class="form-group">
+                <label for="visits_end">{{ trans('backoffice.to') }}</label>
+                <input class="form-control" type="text" name="visits_end" id="visits_end" value="{{ $visits_end }}">
+            </div>
+            <button type="submit" class="btn btn-primary">{{ trans('backoffice.apply') }}</button>
+        </form>
+        <div class="clearfix"></div>
+        
         <div id="visitsChart" style="height:300px" ></div>
 
         <div class="row">
             <div class="col-md-6">
                 
-                <h2>Most 10 Visited Content</h2>
+                <h2>{{ trans('backoffice.most_visited_content') }}</h2>
                 <table id="example" class="display table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th class="col-md-1">Visits</th>
+                            <th>{{ trans('backoffice.title') }}</th>
+                            <th class="col-md-1">{{ trans('backoffice.visits') }}</th>
                         </tr>
                     </thead>
 
@@ -41,12 +55,12 @@
             </div>
             <div class="col-md-6">
                 
-                <h2>Less 10 Visited Content</h2>
+                <h2>{{ trans('backoffice.less_visited_content') }}</h2>
                 <table id="example" class="display table-striped" cellspacing="0" width="100%">
                     <thead>
                         <tr>
-                            <th>Title</th>
-                            <th class="col-md-1">Visits</th>
+                            <th>{{ trans('backoffice.title') }}</th>
+                            <th class="col-md-1">{{ trans('backoffice.visits') }}</th>
                         </tr>
                     </thead>
 
@@ -69,13 +83,35 @@
 @stop
 
 @section('script')
+<script src="{{ asset('assets/js/bootstrap-datepicker.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.sparkline.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.flot.min.js') }}"></script>
 <script src="{{ asset('assets/js/jquery.flot.time.min.js') }}"></script>
 <script type="text/javascript">
-
-    function initVisitsChart(el, data) {
-        $.plot($(el), [ { data: data, label: "Visits"} ], {
+    
+    var date_options = {
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    };
+    $('[name="visits_start"]').datepicker(date_options);
+    $('[name="visits_end"]').datepicker(date_options);
+    
+    // Init visits chart
+    $('#formVisits').on('submit', function (e) {
+        e.preventDefault();
+        updateVisitsChart($('[name="visits_start"]').val(), $('[name="visits_end"]').val());
+        return false;
+    });
+    updateVisitsChart($('[name="visits_start"]').val(), $('[name="visits_end"]').val());
+    
+    function updateVisitsChart(date_start, date_end) {
+        $.getJSON('{{ url("admin/visits/totals") }}/' + date_start + '/' + date_end, function (r) {
+            initVisitsChart("#visitsChart", r.data, date_start, date_end);
+        });
+    }
+    
+    function initVisitsChart(el, data, date_start, date_end) {
+        $.plot($(el), [ { data: data, label: "{{ trans('backoffice.visits') }}"} ], {
             series: {
                 lines: { show: true,
                          lineWidth: 2,
@@ -92,7 +128,10 @@
                     borderWidth: 0
                   },
             colors: ["#3B5998"],
-             xaxis: {mode: "time", min: new Date("2015-07-01"), max: new Date("2016-01-01")},
+             xaxis: {
+                 min: new Date(date_start), max: new Date(date_end),
+                 mode: "time"
+             },
              yaxis: {ticks:3, tickDecimals: 0},
         });
 
@@ -122,7 +161,7 @@
                         var x = item.datapoint[0].toFixed(2),
                             y = item.datapoint[1].toFixed(2),
                             tdate = new Date(parseInt(x));
-                        var months = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+                        var months = {!! trans('backoffice.js_months_array') !!};
                         var year = tdate.getFullYear();
                         var month = months[tdate.getMonth()];
                         var date = tdate.getDate();
@@ -136,9 +175,5 @@
                 }
         });
     }
-    
-    $.getJSON('{{ url("admin/visits/totals") }}', function (r) {
-        initVisitsChart("#visitsChart", r.data);
-    });
 </script>
 @stop

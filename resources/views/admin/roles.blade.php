@@ -10,24 +10,24 @@
 <div class="row">
     <div class="col-md-12">
         
-        <h1>Roles</h1>
+        <h1>{{ trans('backoffice.roles') }}</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/roles/form') }}"><i class="fa fa-group"></i> Create Role</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/roles/form') }}"><i class="fa fa-group"></i> {{ trans('backoffice.create_role') }}</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th class="col-md-2">Options</th>
+                    <th>{{ trans('backoffice.name') }}</th>
+                    <th class="col-md-2">{{ trans('backoffice.options') }}</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Options</th>
+                    <th>{{ trans('backoffice.name') }}</th>
+                    <th>{{ trans('backoffice.options') }}</th>
                 </tr>
             </tfoot>
         </table>

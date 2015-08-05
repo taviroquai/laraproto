@@ -73,4 +73,72 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
     {
         return $this->hasMany('App\Visit');
     }
+    
+    /**
+     * Get user storage path
+     * 
+     * @return string
+     */
+    public function getStoragePath()
+    {
+        return 'storage/user/'.$this->id;
+    }
+    
+    /**
+     * Get avatar url
+     * 
+     * @return string
+     */
+    public function getAvatarUrl()
+    {
+        return asset($this->getStoragePath().'/'.$this->avatar);
+    }
+    
+    /**
+     * Check if user has avatar
+     * 
+     * @return boolean
+     */
+    public function hasAvatar()
+    {
+        return is_file(public_path($this->getStoragePath().'/'.$this->avatar));
+    }
+    
+    /**
+     * Save user avatar
+     * 
+     * @param null|File $file
+     */
+    public function saveAvatar($file, $maxWidth = 1024)
+    {
+        if ($file) {
+            $filename = 'avatar.'.$file->getClientOriginalExtension();
+            $file->move(public_path($this->getStoragePath()), $filename);
+            $this->avatar = $filename;
+            $this->save();
+            
+            // Go resize if not empty
+            if (!empty($maxWidth)) {
+                $this->resizeImage(public_path($this->getStoragePath().'/'.$filename), $maxWidth);
+            }
+        }
+    }
+    
+    /**
+     * Resize avatar
+     * 
+     * @param string  $filename
+     * @param integer $maxWidth
+     * @param integer $quality
+     */
+    public function resizeImage($filename, $maxWidth = 1024, $quality = 90)
+    {
+        $img = \Image::make($filename);
+        if ($img->width() > $maxWidth) {
+            $img->resize($maxWidth, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($filename, $quality);
+        }
+    }
 }

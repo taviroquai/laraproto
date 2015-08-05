@@ -66,13 +66,29 @@ class Content extends Model
      * 
      * @param null|File $file
      */
-    public function savePicture($file)
+    public function savePicture($file, $maxWidth = 1024)
     {
         if ($file) {
             $filename = 'picture.'.$file->getClientOriginalExtension();
             $file->move(public_path($this->getStoragePath()), $filename);
             $this->seo_image = $filename;
             $this->save();
+            
+            // Go resize if not empty
+            if (!empty($maxWidth)) {
+                $this->resizeImage(public_path($this->getStoragePath().'/'.$filename), $maxWidth);
+            }
+        }
+    }
+    
+    public function resizeImage($filename, $maxWidth = 1024, $quality = 90)
+    {
+        $img = \Image::make($filename);
+        if ($img->width() > $maxWidth) {
+            $img->resize($maxWidth, null, function ($constraint) {
+                $constraint->aspectRatio();
+            });
+            $img->save($filename, $quality);
         }
     }
 

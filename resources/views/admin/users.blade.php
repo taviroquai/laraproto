@@ -10,26 +10,26 @@
 <div class="row">
     <div class="col-md-12">
         
-        <h1>Users</h1>
+        <h1>{{ trans('backoffice.users') }}</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/users/form') }}"><i class="fa fa-user"></i> Create User</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/users/form') }}"><i class="fa fa-user"></i> {{ trans('backoffice.create_user') }}</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th class="col-md-2">Options</th>
+                    <th>{{ trans('backoffice.name') }}</th>
+                    <th>{{ trans('backoffice.email') }}</th>
+                    <th class="col-md-2">{{ trans('backoffice.options') }}</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Options</th>
+                    <th>{{ trans('backoffice.name') }}</th>
+                    <th>{{ trans('backoffice.email') }}</th>
+                    <th>{{ trans('backoffice.options') }}</th>
                 </tr>
             </tfoot>
         </table>

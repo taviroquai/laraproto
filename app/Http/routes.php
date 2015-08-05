@@ -23,17 +23,19 @@ Route::model('page', 'App\Page');
 Route::group(['middleware' => ['visit']], function () {
     
     // Run all pages
-    foreach(App\Page::where('active', 1)->get() as $page) {
-        
-        // Create page route
-        Route::get($page->route, function () use ($page) {
-            
-            // Get page data file
-            $data = (array) include($page->getDataPath());
-            
-            // Display page view file
-            return view($page->getView(), $data);
-        });
+    if (\Schema::hasTable('pages')) {
+        foreach(App\Page::where('active', 1)->get() as $page) {
+
+            // Create page route
+            Route::get($page->route, function () use ($page) {
+
+                // Get page data file
+                $data = (array) include($page->getDataPath());
+
+                // Display page view file
+                return view($page->getView(), $data);
+            });
+        }
     }
 });
 
@@ -102,7 +104,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     // Visits
     Route::get('visits', 'VisitController@json');
     Route::get('visits/list', 'VisitController@index');
-    Route::get('visits/totals', 'VisitController@visitsTotalsJson');
+    Route::get('visits/totals/{date_start}/{date_end}', 'VisitController@visitsTotalsJson');
     
 });
 

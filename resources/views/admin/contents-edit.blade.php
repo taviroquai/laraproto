@@ -20,22 +20,25 @@
 <div class="row">
     <div class="col-md-12">
                 
-        <h3>Edit Content</h3>
+        <h3>{{ trans('backoffice.edit_content') }}</h3>
         
         <form id="formContent" method="POST" action="{{ url('/admin/contents') }}" enctype="mutipart/form-data">
             
             {!! csrf_field() !!}
             
+            <!-- Set this param to resize images on server when uploading to prevent display unedited huge files -->
+            <input type="hidden" name="image_max_width" value="1024" />
+            
             <p class="text-success v-success"></p>
             
             <!-- Nav tabs -->
             <ul class="nav nav-tabs" role="tablist">
-                <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">General</a></li>
-                <li role="presentation"><a href="#seo" aria-controls="seo" role="tab" data-toggle="tab">SEO</a></li>
-                <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab">Gallery</a></li>
-                <li role="presentation"><a href="#event" aria-controls="event" role="tab" data-toggle="tab">Event</a></li>
-                <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">Location</a></li>
-                <li role="presentation"><a href="#permission" aria-controls="permission" role="tab" data-toggle="tab">Permission</a></li>
+                <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">{{ trans('backoffice.general') }}</a></li>
+                <li role="presentation"><a href="#seo" aria-controls="seo" role="tab" data-toggle="tab">{{ trans('backoffice.seo') }}</a></li>
+                <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab">{{ trans('backoffice.gallery') }}</a></li>
+                <li role="presentation"><a href="#event" aria-controls="event" role="tab" data-toggle="tab">{{ trans('backoffice.event') }}</a></li>
+                <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">{{ trans('backoffice.location') }}</a></li>
+                <li role="presentation"><a href="#permission" aria-controls="permission" role="tab" data-toggle="tab">{{ trans('backoffice.permission') }}</a></li>
             </ul>
             
             <!-- Tab panes -->
@@ -47,7 +50,7 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="title">Title</label>
+                                <label for="title">{{ trans('backoffice.title') }}</label>
                                 <input class="form-control" type="text" name="title" id="title" 
                                        value="{{ $content->title }}">
                                 <span class="help-block alert-danger v-error-title"></span>
@@ -55,7 +58,7 @@
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="title">Idiom</label>
+                                <label for="title">{{ trans('backoffice.idiom') }}</label>
                                 <select class="form-control" name="lang">
                                     @foreach($content->getAvailableLanguages() as $item)
                                     <option value="{{ $item }}">{{ $item }}</option>
@@ -68,21 +71,21 @@
                     
                     
                     <div class="form-group">
-                        <label for="publish_start">Publish Start</label>
+                        <label for="publish_start">{{ trans('backoffice.publish_start') }}</label>
                         <input class="form-control" type="text" name="publish_start" id="publish_start" 
                                value="{{ $content->publish_start }}">
                         <span class="help-block alert-danger v-error-publish_start"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="publish_end">Publish End</label>
+                        <label for="publish_end">{{ trans('backoffice.publish_end') }}</label>
                         <input class="form-control" type="text" name="publish_end" id="publish_end" 
                                value="{{ $content->publish_end }}">
                         <span class="help-block alert-danger v-error-publish_end"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="content">Content</label>
+                        <label for="content">{{ trans('backoffice.content') }}</label>
                         <span class="help-block alert-danger v-error-content"></span>
                         <div id="summernote">{!! $content->content !!}</div>
                         <input type="hidden" name="content" id="content" rows="10" value="{!! $content->content !!}" />
@@ -92,42 +95,42 @@
                 <div role="tabpanel" class="tab-pane fade" id="seo">
                     
                     <div class="form-group">
-                        <label for="seo_slug">URI Slug</label>
+                        <label for="seo_slug">{{ trans('backoffice.uri_slug') }}</label>
                         <input class="form-control" type="text" name="seo_slug" id="seo_slug" 
                                value="{{ $content->seo_slug }}">
                         <span class="help-block alert-danger v-error-seo_slug"></span>
                     </div>
             
                     <div class="form-group">
-                        <label for="seo_title">Title</label>
+                        <label for="seo_title">{{ trans('backoffice.title') }}</label>
                         <input class="form-control" type="text" name="seo_title" id="seo_title" 
                                value="{{ $content->seo_title }}">
                         <span class="help-block alert-danger v-error-seo_title"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="seo_description">Description</label>
+                        <label for="seo_description">{{ trans('backoffice.description') }}</label>
                         <input class="form-control" type="text" name="seo_description" id="seo_description" 
                                value="{{ $content->seo_description }}">
                         <span class="help-block alert-danger v-error-seo_description"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="seo_author">Author</label>
+                        <label for="seo_author">{{ trans('backoffice.author') }}</label>
                         <input class="form-control" type="text" name="seo_author" id="seo_author" 
                                value="{{ $content->seo_author }}">
                         <span class="help-block alert-danger v-error-seo_author"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="seo_keywords">Keywords</label>
+                        <label for="seo_keywords">{{ trans('backoffice.keywords') }}</label>
                         <input class="form-control" type="text" name="seo_keywords" id="seo_keywords" 
                                value="{{ $content->meta_keywords }}">
                         <span class="help-block alert-danger v-error-seo_keywords"></span>
                     </div>
                     
                     <div class="form-group">
-                        <label for="seo_image">Image</label>
+                        <label for="seo_image">{{ trans('backoffice.image') }}</label>
                         <input class="form-control" type="file" name="seo_image" id="seo_image" value="">
                         <span class="help-block alert-danger v-error-seo_image"></span>
                     </div>
@@ -135,7 +138,7 @@
             
                 <div role="tabpanel" class="tab-pane fade" id="gallery">
                     
-                    <h4>Current Images</h4>
+                    <h4>{{ trans('backoffice.current_images') }}</h4>
                     <div class="row">
                         @foreach($content->getGalleryImages() as $item)
                         <div class="col-md-2">
@@ -149,7 +152,7 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="image_uploader">New Images</label>
+                        <label for="image_uploader">{{ trans('backoffice.upload_images') }}</label>
                         <input class="form-control" type="file" name="image_uploader" id="image_uploader" value="">
                     </div>
                     
@@ -158,14 +161,14 @@
                 <div role="tabpanel" class="tab-pane fade" id="event">
             
                     <div class="form-group">
-                        <label for="event_start">Event Start</label>
+                        <label for="event_start">{{ trans('backoffice.event_start') }}</label>
                         <input class="form-control" type="text" name="event[start]" id="event_start" 
                                value="{{ $content->event ? $content->event->start : '' }}">
                         <span class="help-block alert-danger v-error-event_start"></span>
                     </div>
 
                     <div class="form-group">
-                        <label for="event_end">Event End</label>
+                        <label for="event_end">{{ trans('backoffice.event_end') }}</label>
                         <input class="form-control" type="text" name="event[end]" id="event_end"
                                value="{{ $content->event ? $content->event->end : '' }}">
                         <span class="help-block alert-danger v-error-event_end"></span>
@@ -186,16 +189,16 @@
                     <div class="row">
                         <div class="col-md-10">
                             <div class="form-group">
-                                <label for="address">Search</label>
-                                <input class="form-control" type="text" placeholder="Enter address..." name="location[address]" 
+                                <label for="address">{{ trans('backoffice.search') }}</label>
+                                <input class="form-control" type="text" placeholder="{{ trans('backoffice.address_placeholder') }}" name="location[address]" 
                                        value="{{ $content->location? $content->location->address : '' }}">
                             </div>
                         </div>
                         <div class="col-md-2">
                             <div class="form-group">
-                                <label for="reset">Remove</label>
+                                <label for="reset">{{ trans('backoffice.remove') }}</label>
                                 <div class="clearfix"></div>
-                                <a class="btn btn-danger delete-location">Remove</a>
+                                <a class="btn btn-danger delete-location">{{ trans('backoffice.remove') }}</a>
                             </div>
                         </div>
                     </div>
@@ -205,19 +208,19 @@
                 </div>
                 
                 <div role="tabpanel" class="tab-pane fade" id="permission">
-                    <label>User Permission</label>
+                    <label>{{ trans('backoffice.edit_permission') }}</label>
                     <div class="form-group">
                         <label class="radio-inline" title="Any user can edir this content">
                             <input required type="radio" name="role_permission" value="NONE" 
-                                @if($content->isRolePermission('NONE')) checked="checked" @endif> NONE
+                                @if($content->isRolePermission('NONE')) checked="checked" @endif> {{ trans('backoffice.permission_none') }}
                         </label>
                         <label class="radio-inline" title="Only users in the same roles of the owner can edit this content">
                             <input type="radio" name="role_permission" value="ROLE"
-                                @if($content->isRolePermission('ROLE')) checked="checked" @endif> ROLE
+                                @if($content->isRolePermission('ROLE')) checked="checked" @endif> {{ trans('backoffice.permission_role') }}
                         </label>
                         <label class="radio-inline" title="Only the owner can edit this content">
                             <input type="radio" name="role_permission" value="USER"
-                                @if($content->isRolePermission('USER')) checked="checked" @endif> USER
+                                @if($content->isRolePermission('USER')) checked="checked" @endif> {{ trans('backoffice.permission_user') }}
                         </label>
                     </div>
                 </div>
@@ -225,8 +228,8 @@
             </div>
 
             <div class="form-group">
-                <button class="btn btn-primary" type="submit">Save</button>
-                <a href="javascript: window.history.back()" class="btn btn-danger">Cancel</a>
+                <button class="btn btn-primary" type="submit">{{ trans('backoffice.save') }}</button>
+                <a href="javascript: window.history.back()" class="btn btn-danger">{{ trans('backoffice.cancel') }}</a>
             </div>
         </form>
 
@@ -286,7 +289,7 @@
         uploadExtraData: function() {
             return {
                 '_token': $('[name="_token"]').val(),
-                id: 6
+                'image_max_width': $('[name="image_max_width"]').val()
             };
         }
     });
