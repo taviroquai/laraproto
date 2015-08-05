@@ -88,7 +88,7 @@
                         <label for="content">{{ trans('backoffice.content') }}</label>
                         <span class="help-block alert-danger v-error-content"></span>
                         <div id="summernote">{!! $content->content !!}</div>
-                        <input type="hidden" name="content" id="content" rows="10" value="{!! $content->content !!}" />
+                        <textarea style="display: none" name="content" id="content" rows="10">{!! $content->content !!}</textarea>
                     </div>
                 </div>
                     
