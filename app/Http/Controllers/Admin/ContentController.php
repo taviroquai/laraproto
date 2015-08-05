@@ -76,7 +76,7 @@ class ContentController extends BaseController
         $content->save();
         
         // Process relations
-        $content->savePicture(\Request::file('file-0'));
+        $content->savePicture(\Request::file('file-0'), $input['image_max_width']);
         $content->saveEvent($input['event']);
         $content->saveLocation($input['location']);
         
@@ -96,6 +96,12 @@ class ContentController extends BaseController
         if ($file = \Request::file('image_uploader')) {
             $filename = md5(microtime()).'.'.$file->getClientOriginalExtension();
             $file->move(public_path($content->getGalleryPath()), $filename);
+            
+            // Go resize if not empty
+            $maxWidth = \Input::get('image_max_width');
+            if (!empty($maxWidth)) {
+                $content->resizeImage(public_path($content->getGalleryPath().'/'.$filename), $maxWidth);
+            }
         }
         
         // Response

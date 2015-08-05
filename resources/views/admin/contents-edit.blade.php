@@ -26,6 +26,9 @@
             
             {!! csrf_field() !!}
             
+            <!-- Set this param to resize images on server when uploading to prevent display unedited huge files -->
+            <input type="hidden" name="image_max_width" value="1024" />
+            
             <p class="text-success v-success"></p>
             
             <!-- Nav tabs -->
@@ -286,7 +289,7 @@
         uploadExtraData: function() {
             return {
                 '_token': $('[name="_token"]').val(),
-                id: 6
+                'image_max_width': $('[name="image_max_width"]').val()
             };
         }
     });
