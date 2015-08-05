@@ -7,7 +7,7 @@
     
     <link rel="icon" href="../../favicon.ico">
 
-    <title>LaraProto</title>
+    <title>{{ App\Brand::where('active', 1)->first()->name }}{{ trans('backoffice.title_suffix') }}</title>
 
     <!-- CSS -->
     <link href="{{ asset('assets/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -29,7 +29,7 @@
       <div class="container">
         <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
+            <span class="sr-only">{{ trans('backoffice.toggle_navigation') }}</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
@@ -38,26 +38,26 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav navbar">
-                <li><a href="{{ url('/admin/contents/list') }}"><i class="fa fa-files-o"></i> Content</a></li>
+                <li><a href="{{ url('/admin/contents/list') }}"><i class="fa fa-files-o"></i> {{ trans('backoffice.contents') }}</a></li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i> System <span class="caret"></span></a>
+                    <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-cogs"></i> {{ trans('backoffice.system') }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('/admin/pages/list') }}"><i class="fa fa-newspaper-o"></i> Pages</a></li>
-                        <li><a href="{{ url('/admin/users/list') }}"><i class="fa fa-user"></i> Users</a></li>
-                        <li><a href="{{ url('/admin/roles/list') }}"><i class="fa fa-users"></i> Roles</a></li>
-                        <li><a href="{{ url('/admin/permissions/list') }}"><i class="fa fa-ban"></i> Permission</a></li>
-                        <li><a href="{{ url('/admin/brands/list') }}"><i class="fa fa-trademark"></i> Site Brand</a></li>
-                        <li><a href="{{ url('/admin/visits/list') }}"><i class="fa fa-eye"></i> Visits</a></li>
+                        <li><a href="{{ url('/admin/pages/list') }}"><i class="fa fa-newspaper-o"></i> {{ trans('backoffice.pages') }}</a></li>
+                        <li><a href="{{ url('/admin/users/list') }}"><i class="fa fa-user"></i> {{ trans('backoffice.users') }}</a></li>
+                        <li><a href="{{ url('/admin/roles/list') }}"><i class="fa fa-users"></i> {{ trans('backoffice.roles') }}</a></li>
+                        <li><a href="{{ url('/admin/permissions/list') }}"><i class="fa fa-ban"></i> {{ trans('backoffice.permissions') }}</a></li>
+                        <li><a href="{{ url('/admin/brands/list') }}"><i class="fa fa-trademark"></i> {{ trans('backoffice.brands') }}</a></li>
+                        <li><a href="{{ url('/admin/visits/list') }}"><i class="fa fa-eye"></i> {{ trans('backoffice.visits') }}</a></li>
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a target="_blank" href="{{ url('/') }}"><i class="fa fa-globe"></i> View Site</a></li>
+                <li><a target="_blank" href="{{ url('/') }}"><i class="fa fa-globe"></i> {{ trans('backoffice.view_site') }}</a></li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user"></i> {{ \Auth::user()->name }} <span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li><a href="{{ url('admin/profile') }}"><i class="fa fa-cog"></i> My Account</a></li>
-                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out"></i> Logout</a></li>
+                        <li><a href="{{ url('admin/profile') }}"><i class="fa fa-cog"></i> {{ trans('backoffice.my_account') }}</a></li>
+                        <li><a href="{{ url('auth/logout') }}"><i class="fa fa-sign-out"></i> {{ trans('backoffice.logout') }}</a></li>
                     </ul>
                 </li>
             </ul>
@@ -79,7 +79,7 @@
         <div class="row">
             <div class="col-md-12 main">
                 <hr>
-                <p class="pull-right">&copy; LaraProto 2015 - {{ date('Y') }}</p>
+                <p class="pull-right">{{ trans('backoffice.copyright', ['year' => date('Y')]) }}</p>
             </div>
         </div>
     </div>

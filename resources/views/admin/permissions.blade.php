@@ -10,28 +10,26 @@
 <div class="row">
     <div class="col-md-12">
         
-        <h1>Permissions</h1>
+        <h1>{{ trans('backoffice.permissions') }}</h1>
         
         <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/permissions/form') }}"><i class="fa fa-ban"></i> Create Permission</a>
+            <a class="btn btn-success pull-right" href="{{ url('admin/permissions/form') }}"><i class="fa fa-ban"></i> {{ trans('backoffice.create_permission') }}</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Label</th>
-                    <th>Route</th>
-                    <th>HTTP</th>
-                    <th class="col-md-2">Options</th>
+                    <th>{{ trans('backoffice.label') }}</th>
+                    <th>{{ trans('backoffice.route') }}</th>
+                    <th class="col-md-2">{{ trans('backoffice.options') }}</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Label</th>
-                    <th>Route</th>
-                    <th>HTTP</th>
-                    <th>Options</th>
+                    <th>{{ trans('backoffice.label') }}</th>
+                    <th>{{ trans('backoffice.route') }}</th>
+                    <th>{{ trans('backoffice.options') }}</th>
                 </tr>
             </tfoot>
         </table>
@@ -49,13 +47,15 @@
             "ajax": "{{ url('admin/permissions') }}",
             "columns": [
                 { "data": "label" },
-                { "data": "route" },
-                { "data": "http" },
+                {
+                    "render": function ( data, type, full, meta ) {
+                        return full.http + ' ' + full.route;
+                    }
+                },
                 {
                     "orderable": false,
                     "searchable": false,
                     "render": function ( data, type, full, meta ) {
-                        console.log(full);
                         return '<a class="btn btn-info btn-xs" href="' + "{{ url('admin/permissions/form') }}/" + full.id + '"><i class="fa fa-pencil"></i></a>'
                             + '&nbsp;<a class="btn btn-danger btn-xs" href="' + "{{ url('admin/permissions/delete') }}/" + full.id + '"><i class="fa fa-trash"></i></a>'
                     }

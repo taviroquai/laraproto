@@ -5,7 +5,7 @@
 @show
 
 @section('content')
-<h1>Unauthorized!</h1>
+<h1>{{ trans('backoffice.unauthorized') }}</h1>
 @show
 
 @section('script')

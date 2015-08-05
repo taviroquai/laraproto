@@ -8,28 +8,28 @@
 @section('content')
 <div class="row">
     <div class="col-md-12">
-        <h1>Visits</h1>
+        <h1>{{ trans('backoffice.visits') }}</h1>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">
             <thead>
                 <tr>
-                    <th>Last Visit</th>
-                    <th>IP</th>
-                    <th>Path</th>
-                    <th>Content</th>
-                    <th>User</th>
-                    <th>Visits</th>
+                    <th>{{ trans('backoffice.last_visit') }}</th>
+                    <th>{{ trans('backoffice.ip') }}</th>
+                    <th>{{ trans('backoffice.path') }}</th>
+                    <th>{{ trans('backoffice.content') }}</th>
+                    <th>{{ trans('backoffice.user') }}</th>
+                    <th>{{ trans('backoffice.visits') }}</th>
                 </tr>
             </thead>
 
             <tfoot>
                 <tr>
-                    <th>Last Visit</th>
-                    <th>IP</th>
-                    <th>Path</th>
-                    <th>Content</th>
-                    <th>User</th>
-                    <th>Visits</th>
+                    <th>{{ trans('backoffice.last_visit') }}</th>
+                    <th>{{ trans('backoffice.ip') }}</th>
+                    <th>{{ trans('backoffice.path') }}</th>
+                    <th>{{ trans('backoffice.content') }}</th>
+                    <th>{{ trans('backoffice.user') }}</th>
+                    <th>{{ trans('backoffice.visits') }}</th>
                 </tr>
             </tfoot>
         </table>
