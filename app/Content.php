@@ -62,6 +62,38 @@ class Content extends Model
     }
     
     /**
+     * Get content with filters
+     *
+     * @return string
+     */
+    public function getContent()
+    {
+        return $this->addContentFilters($this->content);
+    }
+    
+    /**
+     * Adds content filters
+     *
+     * @return string
+     */
+    public function addContentFilters($content)
+    {
+        // Embed youtube
+        $matchYoutube = preg_match('/https\:\/\/www\.youtube\.com\/watch\?v\=([\w\d-_]+)/', $content, $matches);
+        if (!empty($matchYoutube)) {
+            $content = str_replace($matches[0], '<iframe width="100%" height="320" src="https://www.youtube.com/embed/'.$matches[1].'" frameborder="0" allowfullscreen></iframe>', $content);
+        }
+        
+        // Embed Vimeo
+        $matchVimeo = preg_match('/https\:\/\/vimeo\.com\/([\d]+)/', $content, $matches);
+        if (!empty($matchVimeo)) {
+            $content = str_replace($matches[0], '<iframe src="https://player.vimeo.com/video/'.$matches[1].'" width="100%" height="320" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>', $content);
+        }
+        
+        return $content;
+    }
+    
+    /**
      * Save content main picture
      * 
      * @param null|File $file

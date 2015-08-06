@@ -14,7 +14,7 @@
     <h1>{{ $content->title }}</h1>
     <p><a href="{{ url('/') }}">Home</a></p>
     <p><img class="col-md-2 thumbnail" style="margin: 20px" src="{{ $content->getPictureUrl() }}" alt="Logo" /></p>
-    {!! $content->content !!}
+    {!! $content->getContent() !!}
     
     <div class="clearfix"></div>
     <h2>Content Gallery</h2>
