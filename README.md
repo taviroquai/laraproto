@@ -22,8 +22,10 @@ Give write permissions to webserver to the following folders:
 1. Check that you generate the application key with ./artisan key:generate and put in config/app.php
 
 ## Default Login
-u: admin@isp.com
-p: admin
+u: admin@isp.com  
+p: admin  
+
+Take a look at the [Demo](http://taviroquai.com/laraproto/public/admin/dashboard)
 
 ## Features
 
@@ -33,7 +35,7 @@ p: admin
     1. Roles
     1. Permissions
     1. Website Brand
-    1. User Pages (route, view and data files)
+    1. Pages
     1. Content
         1. SEO fields
         1. Summernote (WYSIWYG)
