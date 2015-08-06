@@ -187,6 +187,45 @@ class Content extends Model
     }
     
     /**
+     * Get public storage path
+     * 
+     * @return string
+     */
+    public function getPublicStoragePath()
+    {
+        return public_path('storage/content/'.$this->id);
+    }
+    
+    /**
+     * Copy content
+     * 
+     * @param Content $target
+     * @return string
+     */
+    public function copy(Content $target)
+    {
+        // Copy picture
+        $target->seo_image = $this->seo_image;
+        if (!is_dir($target->getPublicStoragePath())) {
+            mkdir ($target->getPublicStoragePath());
+        }
+        copy($this->getPublicStoragePath().'/'.$this->seo_image, $target->getPublicStoragePath().'/'.$target->seo_image);
+        
+        // Copy event
+        $target->event ? $target->event->delete() : false;
+        $target->event()->create(['start' => $this->event->start, 'end' => $this->event->end]);
+        
+        // Copy location
+        $target->location ? $target->location->delete() : false;
+        $target->location()->create([
+            'address' => $this->location->address,
+            'lat' => $this->location->lat,
+            'lon' => $this->location->lon,
+            'zoom' => $this->location->zoom
+        ]);
+    }
+    
+    /**
      * Get gallery storage path
      * 
      * @return string

@@ -96,8 +96,30 @@ class ContentController extends BaseController
     }
     
     /**
+     * Copy content
+     * 
+     * @param Content $content
+     * @return \Illuminate\Http\RedirectResponse
+     */
+    public function copy(Content $content)
+    {
+        // Create copy
+        $copy = $content->replicate();
+        $copy->title .= ' (copy '.date('Y-m-d H:i:s').')';
+        $copy->seo_slug = str_slug($copy->title);
+        $copy->save();
+        
+        // Copy relations to copy
+        $content->copy($copy);
+        
+        // Redirect
+        return redirect('admin/contents/form/'. $copy->id);
+    }
+    
+    /**
      * Save content ownership
      * 
+     * @param Content $content
      * @return \Illuminate\Http\JsonResponse
      */
     public function saveOwnership(Content $content)

@@ -34,6 +34,7 @@ return [
     'cancel' => 'Cancel',
     'options' => 'Options',
     'edit' => 'Edit',
+    'copy' => 'Copy',
     'ownership' => 'Content Ownership',
     'delete' => 'Delete',
     'search' => 'Search',
