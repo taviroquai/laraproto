@@ -76,5 +76,10 @@ class PermissionController extends BaseController
         $permission->delete();
         return redirect('admin/permissions/list');
     }
+    
+    public function downloadLogs()
+    {
+        return response()->download(base_path('storage/logs/laravel.log'));
+    }
 
 }

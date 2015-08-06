@@ -98,6 +98,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/permissions/form/{permission?}', 'PermissionController@form');
     Route::post('/permissions', 'PermissionController@save');
     Route::get('/permissions/delete/{permission}', 'PermissionController@delete');
+    Route::get('/permissions/download', 'PermissionController@downloadLogs');
     
     // Branding
     Route::get('/brands', 'BrandController@json');

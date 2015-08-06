@@ -12,8 +12,9 @@
         
         <h1>{{ trans('backoffice.permissions') }}</h1>
         
-        <p class="clearfix">
-            <a class="btn btn-success pull-right" href="{{ url('admin/permissions/form') }}"><i class="fa fa-ban"></i> {{ trans('backoffice.create_permission') }}</a>
+        <p class="clearfix pull-right">
+            <a class="btn btn-warning" href="{{ url('admin/permissions/download') }}"><i class="fa fa-file-o"></i> {{ trans('backoffice.download_logs') }}</a>
+            <a class="btn btn-success" href="{{ url('admin/permissions/form') }}"><i class="fa fa-ban"></i> {{ trans('backoffice.create_permission') }}</a>
         </p>
 
         <table id="example" class="display table-striped" cellspacing="0" width="100%">

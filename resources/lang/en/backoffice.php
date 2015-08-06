@@ -105,6 +105,7 @@ return [
     // Permission
     'edit_permission' => 'Edit Permission',
     'create_permission' => 'Create Permission',
+    'download_logs' => 'Logs',
     
     // Role
     'edit_role' => 'Edit Role',
