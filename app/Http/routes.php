@@ -60,6 +60,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/contents/list', 'ContentController@index');
     Route::get('/contents/form/{content?}', 'ContentController@form');
     Route::post('/contents', 'ContentController@save');
+    Route::get('/contents/ownership/{content}', 'ContentController@formOwnership');
+    Route::post('/contents/ownership/{content}', 'ContentController@saveOwnership');
     Route::get('/contents/delete/{content}', 'ContentController@delete');
     Route::post('/contents/upload/{content}', 'ContentController@upload');
     Route::get('/contents/{content}/delete/{filename}', 'ContentController@deleteGalleryImage');

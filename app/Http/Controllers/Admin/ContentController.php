@@ -31,6 +31,17 @@ class ContentController extends BaseController
 	}
     
     /**
+     * Edit content ownership
+     * 
+     * @param Content $content
+     * @return \Illuminate\View\View
+     */
+    public function formOwnership(Content $content)
+	{
+		return view('admin/contents-ownership', compact('content'));
+	}
+    
+    /**
      * Save content
      * 
      * @return \Illuminate\Http\JsonResponse
@@ -79,6 +90,33 @@ class ContentController extends BaseController
         $content->savePicture(\Request::file('file-0'), $input['image_max_width']);
         $content->saveEvent($input['event']);
         $content->saveLocation($input['location']);
+        
+        // Response
+        return response()->json(['success' => 'Content saved', 'redirect' => url('/admin/contents/list')]);
+    }
+    
+    /**
+     * Save content ownership
+     * 
+     * @return \Illuminate\Http\JsonResponse
+     */
+    public function saveOwnership(Content $content)
+    {
+        $input = \Input::except('_token');
+        
+        // Validate
+        $validator = \Validator::make($input, [
+            'user_id' => 'required'
+        ]);
+        
+        // When fails
+        if ($validator->fails()) {
+            return response()->json(['errors' => $validator->messages()]);
+        }
+        
+        // Save changes
+        $content->user_id = $input['user_id'];
+        $content->save();
         
         // Response
         return response()->json(['success' => 'Content saved', 'redirect' => url('/admin/contents/list')]);

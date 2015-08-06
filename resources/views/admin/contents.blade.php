@@ -49,8 +49,9 @@
                     "orderable": false,
                     "searchable": false,
                     "render": function ( data, type, full, meta ) {
-                        return '<a class="btn btn-info btn-xs" href="' + "{{ url('admin/contents/form') }}/" + full.id + '"><i class="fa fa-pencil"></i></a>'
-                            + '&nbsp;<a class="btn btn-danger btn-xs" href="' + "{{ url('admin/contents/delete') }}/" + full.id + '"><i class="fa fa-trash"></i></a>'
+                        return '<a class="btn btn-info btn-xs" title="{{ trans('backoffice.edit') }}" href="' + "{{ url('admin/contents/form') }}/" + full.id + '"><i class="fa fa-pencil"></i></a>'
+                            + '&nbsp;<a class="btn btn-warning btn-xs" title="{{ trans('backoffice.ownership') }}" href="' + "{{ url('admin/contents/ownership') }}/" + full.id + '"><i class="fa fa-user"></i></a>'
+                            + '&nbsp;<a class="btn btn-danger btn-xs" title="{{ trans('backoffice.delete') }}" href="' + "{{ url('admin/contents/delete') }}/" + full.id + '"><i class="fa fa-trash"></i></a>';
                     }
                 }
             ]
