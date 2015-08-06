@@ -26,14 +26,20 @@ class BackofficePermission implements Middleware {
         $roles = \Auth::user()->roles;
         $allow = true;
         
-        // Check if route has permission
-        foreach ($roles as $role) {
-            foreach($role->permissions as $permission) {
-                $allow = $allow & !$this->denied($request, $route, $permission);
+        try {
+            // Check if route has permission
+            foreach ($roles as $role) {
+                foreach($role->permissions as $permission) {
+                    $allow = $allow & !$this->denied($request, $route, $permission);
+                }
             }
+        } catch (\Exception $e) {
+            \Log::error($e->getFile().':'.$e->getLine().' '.$e->getMessage());
+            $allow = false;
         }
         
         // Apply access
+        \Log::info('ACCESS:' .\Auth::user()->name.':'. $request->method().':'.$request->path().':'.($allow ? 'ALLOWED' : 'DENIED'));
         if (!$allow) {
             if ($request->ajax()) {
                 return response('Unauthorized.', 401);
@@ -48,8 +54,8 @@ class BackofficePermission implements Middleware {
     protected function denied($request, $route, $permission)
     {
         $pattern = $permission->route;
-        if (strstr($pattern, '{')) {
-            $pattern = str_replace(['{', '}', '?'], ['\{', '\}', '\?'], $pattern);
+        if (strstr($pattern, '{') || strstr($pattern, '/')) {
+            $pattern = str_replace(['{', '}', '?', '/'], ['\{', '\}', '\?', '\/'], $pattern);
         }
         $pattern = "/".$pattern."/i";
         if ($request->isMethod($permission->http)

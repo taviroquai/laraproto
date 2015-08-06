@@ -82,6 +82,16 @@ class DatabaseSeeder extends Seeder
                     'label' => 'Site Brand',
                     'http' => 'GET',
                     'route' => 'admin/brands/list'
+                ],
+                [
+                    'label' => 'Delete Content',
+                    'http' => 'GET',
+                    'route' => 'admin/contents/delete'
+                ],
+                [
+                    'label' => 'Change Content Ownership',
+                    'http' => 'GET',
+                    'route' => 'admin/contents/ownership'
                 ]
             ]);
         }
@@ -116,6 +126,16 @@ class DatabaseSeeder extends Seeder
                 [
                     'role_id' => 2,
                     'permission_id' => 6,
+                    'access' => 'DENY'
+                ],
+                [
+                    'role_id' => 2,
+                    'permission_id' => 7,
+                    'access' => 'DENY'
+                ],
+                [
+                    'role_id' => 2,
+                    'permission_id' => 8,
                     'access' => 'DENY'
                 ]
             ]);
