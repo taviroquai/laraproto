@@ -181,6 +181,36 @@ class ContentController extends BaseController
     }
     
     /**
+     * Upload attachments
+     * 
+     * @param Content $content
+     * @return \Illiminate\Http\JsonResponse
+     */
+    public function uploadAttachment(Content $content)
+    {
+        // Process seo image
+        if ($file = \Request::file('attachment_uploader')) {
+            $filename = str_slug($file->getClientOriginalName()).'.'.$file->getClientOriginalExtension();
+            $file->move(public_path($content->getAttachmentsPath()), $filename);
+        }
+        
+        // Response
+        return response()->json(['success' => true]);
+    }
+    
+    /**
+     * Delete attachment
+     * 
+     * @param Content $content
+     * @return \Illiminate\Http\JsonResponse
+     */
+    public function deleteAttachment(Content $content, $attachment)
+    {
+        $result = unlink($content->getAttachmentsPath().'/'.$attachment);
+        return response()->json(['success' => $result]);
+    }
+    
+    /**
      * Get all contents
      * 
      * @param Content $content

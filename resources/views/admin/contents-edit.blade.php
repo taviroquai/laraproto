@@ -36,6 +36,7 @@
                 <li role="presentation" class="active"><a href="#general" aria-controls="general" role="tab" data-toggle="tab">{{ trans('backoffice.general') }}</a></li>
                 <li role="presentation"><a href="#seo" aria-controls="seo" role="tab" data-toggle="tab">{{ trans('backoffice.seo') }}</a></li>
                 <li role="presentation"><a href="#gallery" aria-controls="gallery" role="tab" data-toggle="tab">{{ trans('backoffice.gallery') }}</a></li>
+                <li role="presentation"><a href="#attachments" aria-controls="attachments" role="tab" data-toggle="tab">{{ trans('backoffice.attachments') }}</a></li>
                 <li role="presentation"><a href="#event" aria-controls="event" role="tab" data-toggle="tab">{{ trans('backoffice.event') }}</a></li>
                 <li role="presentation"><a href="#location" aria-controls="location" role="tab" data-toggle="tab">{{ trans('backoffice.location') }}</a></li>
                 <li role="presentation"><a href="#permission" aria-controls="permission" role="tab" data-toggle="tab">{{ trans('backoffice.permission') }}</a></li>
@@ -158,6 +159,30 @@
                     
                 </div>
                 
+                <div role="tabpanel" class="tab-pane fade" id="attachments">
+                    
+                    <h4>{{ trans('backoffice.current_attachments') }}</h4>
+                    <ul class="list-group">
+                        @foreach($content->getAttachments() as $item)
+                        <li class="list-group-item">
+                            <a class="btn btn-danger btn-xs delete-attachment" data-item="{{ $content->getAttachmentUrl($item) }}"
+                                title="Click to delete">
+                                <i class="fa fa-trash"></i>
+                            </a>
+                            <a href="{{ $content->getAttachmentUrl($item) }}" target="_blank">
+                                {{ basename($item) }}
+                            </a>
+                        </li>
+                        @endforeach
+                    </ul>
+                    
+                    <div class="form-group">
+                        <label for="attachment_uploader">{{ trans('backoffice.upload_attachments') }}</label>
+                        <input class="form-control" type="file" name="attachment_uploader" id="attachment_uploader" value="">
+                    </div>
+                    
+                </div>
+                
                 <div role="tabpanel" class="tab-pane fade" id="event">
             
                     <div class="form-group">
@@ -275,7 +300,7 @@
 		maxFileCount: 1,
     });
     
-    var uploader = $("#image_uploader").fileinput({
+    var gallery_uploader = $("#image_uploader").fileinput({
         language: "pt",
         uploadUrl: "{{ url('admin/contents/upload/'.$content->id) }}",
         allowedFileExtensions: ["jpg", "png", "gif"],
@@ -293,8 +318,8 @@
             };
         }
     });
-    uploader.on('filebatchselected', function(event, files) {
-        uploader.fileinput('upload');
+    gallery_uploader.on('filebatchselected', function(event, files) {
+        gallery_uploader.fileinput('upload');
     });
 
     $('#gallery .delete-image').on('click', function() {
@@ -306,6 +331,50 @@
                     me.parent().remove();
                 } else {
                     alert('Could not destroy image!');
+                }
+            });
+        }
+    });
+    
+    var attachment_uploader = $("#attachment_uploader").fileinput({
+        language: "pt",
+        uploadUrl: "{{ url('admin/contents/attachment/'.$content->id) }}",
+        allowedFileExtensions: ["doc", "docx", "xls", "xlsx", "ppt", "pptx", "pdf", "zip"],
+        previewFileIcon: '<i class="fa fa-file"></i>',
+        allowedPreviewTypes: null, // set to empty, null or false to disable preview for all types
+        previewFileIconSettings: {
+            'doc': '<i class="fa fa-file-word-o text-primary"></i>',
+            'docx': '<i class="fa fa-file-word-o text-primary"></i>',
+            'xls': '<i class="fa fa-file-excel-o text-success"></i>',
+            'xlsx': '<i class="fa fa-file-excel-o text-success"></i>',
+            'ppt': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+            'pptx': '<i class="fa fa-file-powerpoint-o text-danger"></i>',
+            'pdf': '<i class="fa fa-file-pdf-o text-danger"></i>',
+            'zip': '<i class="fa fa-file-archive-o text-muted"></i>',
+        },
+        showCaption: false,
+        overwriteInitial: true,
+        showUpload: false,
+        showRemove: false,
+        uploadExtraData: function() {
+            return {
+                '_token': $('[name="_token"]').val()
+            };
+        }
+    });
+    attachment_uploader.on('filebatchselected', function(event, files) {
+        attachment_uploader.fileinput('upload');
+    });
+
+    $('#attachments .delete-attachment').on('click', function() {
+        var me = $(this);
+        var resp = confirm('Destroy attachment?');
+        if (resp) {
+            $.get("{{ url('admin/contents/'.$content->id.'/attachment/delete') }}/" + $(this).data('item').split(/[\\/]/).pop(), function (resp) {
+                if (resp.success) {
+                    me.parent().remove();
+                } else {
+                    alert('Could not destroy attachment!');
                 }
             });
         }

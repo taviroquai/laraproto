@@ -27,6 +27,16 @@
         </div>
         @endforeach
     </div>
+    <h2>Attachments</h2>
+    <ul class="list-group">
+        @foreach($content->getAttachments() as $item)
+        <li class="list-group-item">
+            <a href="{{ $content->getAttachmentUrl($item) }}">
+                {{ basename($item) }}
+            </a>
+        </li>
+        @endforeach
+    </ul>
 @stop
 
 @section('script')

@@ -66,6 +66,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/contents/delete/{content}', 'ContentController@delete');
     Route::post('/contents/upload/{content}', 'ContentController@upload');
     Route::get('/contents/{content}/delete/{filename}', 'ContentController@deleteGalleryImage');
+    Route::post('/contents/attachment/{content}', 'ContentController@uploadAttachment');
+    Route::get('/contents/{content}/attachment/delete/{filename}', 'ContentController@deleteAttachment');
     
     // Views
     Route::get('/pages', 'PageController@json');

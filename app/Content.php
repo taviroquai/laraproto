@@ -256,6 +256,38 @@ class Content extends Model
     {
         return asset($this->getGalleryPath()).'/'.basename($image);
     }
+    
+    /**
+     * Get attachments storage path
+     * 
+     * @return string
+     */
+    public function getAttachmentsPath()
+    {
+        return 'storage/content/'.$this->id.'/attachments';
+    }
+    
+    /**
+     * Get attachments
+     * 
+     * @return array
+     */
+    public function getAttachments()
+    {
+        $items = glob(public_path($this->getAttachmentsPath()).'/*.{doc,docx,xls,xlsx,ppt,pptx,pdf,zip}', GLOB_BRACE);
+        return $items;
+    }
+    
+    /**
+     * Get attachment url
+     * 
+     * @param string $attachment
+     * @return string
+     */
+    public function getAttachmentUrl($attachment)
+    {
+        return asset($this->getAttachmentsPath()).'/'.basename($attachment);
+    }
 
     /**
      * Get main picture url
