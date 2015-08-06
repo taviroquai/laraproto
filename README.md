@@ -43,6 +43,8 @@ Take a look at the [Demo](http://taviroquai.com/laraproto/public/admin/dashboard
         1. Event - Allows to associate a time to start/end
         1. Images (Gallery) - Allows to upload and associate several images
         1. Location - Allows to associate a location
+        1. Transfer content ownership
+        1. Create a duplicate
 
 ## Permissions
 
