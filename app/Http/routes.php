@@ -50,6 +50,10 @@ Route::post('password/email', 'Auth\PasswordController@postEmail');
 Route::get('password/reset/{token}', 'Auth\PasswordController@getReset');
 Route::post('password/reset', 'Auth\PasswordController@postReset');
 
+// LDAP auth
+Route::get('ldap/login', 'Ldap\AuthController@getLogin');
+Route::post('ldap/login', 'Ldap\AuthController@postLogin');
+
 // Backoffice routes
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'permission']], function () {
     

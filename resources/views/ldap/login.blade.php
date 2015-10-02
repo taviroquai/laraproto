@@ -3,28 +3,34 @@
 @extends('layout')
 
 @section('seo')
-<title>Login</title>
+<title>LDAP Login</title>
 @stop
 
 @section('content')
 <div class="row">
     <div class="col-md-12">
         
-        <h1>Login</h1>
+        <h1>LDAP Login</h1>
         
-        <form method="POST" action="{{ url('/auth/login') }}">
+        @if(\Session::has('status'))
+            <div class="alert alert-danger" role="alert">{{ \Session::get('status') }}</div>
+        @endif
+        
+        <form method="POST" action="{{ url('/ldap/login') }}">
             
             {!! csrf_field() !!}
 
             <div class="form-group">
-                <label for="loginEmail">Email</label>
-                <input class="form-control" type="email" name="email" id="loginEmail" value="{{ old('email') }}">
-                <span class="help-block alert-danger">{{ $errors->first('email') }}</span>
+                <label for="loginUsername">Username</label>
+                <input class="form-control" type="text" required
+                    name="username" id="loginUsername" value="{{ old('username') }}">
+                <span class="help-block alert-danger">{{ $errors->first('username') }}</span>
             </div>
 
             <div class="form-group">
                 <label for="loginPassword">Password</label>
-                <input class="form-control" type="password" name="password" id="loginPassword">
+                <input class="form-control" type="password" required
+                    name="password" id="loginPassword">
                 <span class="help-block alert-danger">{{ $errors->first('password') }}</span>
             </div>
 
@@ -32,7 +38,6 @@
                 <label>
                     <input type="checkbox" name="remember"> Remember Me
                 </label>
-                <br /><a href="{{ url('password/email') }}">Reset Password</a>
             </div>
 
             <div class="form-group">

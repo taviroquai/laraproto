@@ -20,6 +20,7 @@
 
         @if (!Auth::check())
                 <a href="{{ url('auth/login') }}">Login</a>
+                <a href="{{ url('ldap/login') }}">LDAP Login</a>
                 <a href="{{ url('auth/register') }}">Register</a>
         @else
                 <a href="{{ url('admin/dashboard') }}">Admin</a>
