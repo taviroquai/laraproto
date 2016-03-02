@@ -21,7 +21,7 @@ Route::model('page', 'App\Page');
 
 // Load user pages
 Route::group(['middleware' => ['visit']], function () {
-    
+
     // Run all pages
     if (\Schema::hasTable('pages')) {
         foreach(App\Page::where('active', 1)->get() as $page) {
@@ -56,9 +56,9 @@ Route::post('ldap/login', 'Ldap\AuthController@postLogin');
 
 // Backoffice routes
 Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['auth', 'permission']], function () {
-    
+
     Route::get('dashboard', 'DashboardController@index');
-    
+
     // Content
     Route::get('/contents', 'ContentController@json');
     Route::get('/contents/list', 'ContentController@index');
@@ -68,18 +68,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('/contents/ownership/{content}', 'ContentController@saveOwnership');
     Route::get('/contents/copy/{content}', 'ContentController@copy');
     Route::get('/contents/delete/{content}', 'ContentController@delete');
-    Route::post('/contents/upload/{content}', 'ContentController@upload');
+    Route::post('/contents/upload/{content?}', 'ContentController@upload');
     Route::get('/contents/{content}/delete/{filename}', 'ContentController@deleteGalleryImage');
     Route::post('/contents/attachment/{content}', 'ContentController@uploadAttachment');
     Route::get('/contents/{content}/attachment/delete/{filename}', 'ContentController@deleteAttachment');
-    
+
     // Views
     Route::get('/pages', 'PageController@json');
     Route::get('/pages/list', 'PageController@index');
     Route::get('/pages/form/{page?}', 'PageController@form');
     Route::post('/pages', 'PageController@save');
     Route::get('/pages/delete/{page}', 'PageController@delete');
-    
+
     // User
     Route::get('/users', 'UserController@json');
     Route::get('/users/list', 'UserController@index');
@@ -88,14 +88,14 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::get('/users/delete/{user}', 'UserController@delete');
     Route::get('/profile', 'UserController@profile');
     Route::post('/profile', 'UserController@profileSave');
-    
+
     // Role
     Route::get('/roles', 'RoleController@json');
     Route::get('/roles/list', 'RoleController@index');
     Route::get('/roles/form/{role?}', 'RoleController@form');
     Route::post('/roles', 'RoleController@save');
     Route::get('/roles/delete/{role}', 'RoleController@delete');
-    
+
     // Permission
     Route::get('/permissions', 'PermissionController@json');
     Route::get('/permissions/list', 'PermissionController@index');
@@ -103,18 +103,18 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'middleware' => ['aut
     Route::post('/permissions', 'PermissionController@save');
     Route::get('/permissions/delete/{permission}', 'PermissionController@delete');
     Route::get('/permissions/download', 'PermissionController@downloadLogs');
-    
+
     // Branding
     Route::get('/brands', 'BrandController@json');
     Route::get('/brands/list', 'BrandController@index');
     Route::get('/brands/form/{brand?}', 'BrandController@form');
     Route::post('/brands', 'BrandController@save');
     Route::get('/brands/delete/{brand}', 'BrandController@delete');
-    
+
     // Visits
     Route::get('visits', 'VisitController@json');
     Route::get('visits/list', 'VisitController@index');
     Route::get('visits/totals/{date_start}/{date_end}', 'VisitController@visitsTotalsJson');
-    
+
 });
 
