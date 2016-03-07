@@ -15,14 +15,14 @@ class CreateBrandsTable extends Migration
         Schema::create('brands', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name', 120);
-            $table->string('slogan');
-            $table->string('description');
-            $table->string('keywords');
-            $table->string('author');
-            $table->string('logo');
+            $table->string('slogan')->nullable();
+            $table->string('description')->nullable();
+            $table->string('keywords')->nullable();
+            $table->string('author')->nullable();
+            $table->string('logo')->nullable();
             $table->boolean('active');
-            $table->longText('css');
-            $table->longText('config');
+            $table->longText('css')->nullable();
+            $table->longText('config')->nullable();
             $table->timestamps();
         });
     }

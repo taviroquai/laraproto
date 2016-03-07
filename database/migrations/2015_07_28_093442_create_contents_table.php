@@ -19,10 +19,10 @@ class CreateContentsTable extends Migration
             $table->string('title', 120);
             $table->string('seo_slug', 120)->unique();
             $table->string('seo_title');
-            $table->string('seo_description');
-            $table->string('seo_keywords');
-            $table->string('seo_author');
-            $table->string('seo_image');
+            $table->string('seo_description')->nullable();
+            $table->string('seo_keywords')->nullable();
+            $table->string('seo_author')->nullable();
+            $table->string('seo_image')->nullable();
             $table->longText('content');
             $table->date('publish_start')->nullable();
             $table->date('publish_end')->nullable();

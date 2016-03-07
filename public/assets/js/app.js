@@ -77,6 +77,10 @@ var Form = function ($, selector, options)
     // On submit
     form.on('submit', function (e) {
         e.preventDefault();
+        
+        // Reset form data for each submition
+        data = new FormData();
+        
         $.each(form.serializeArray(), function (i, item) {
             data.append(item.name, item.value);
         });

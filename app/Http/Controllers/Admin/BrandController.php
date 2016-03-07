@@ -48,7 +48,7 @@ class BrandController extends BaseController
         }
         
         // Save changes
-        $brand = Brand::findOrNew($input['id']);
+        $brand = empty($input['id']) ? new Brand : Brand::find($input['id']);
         
         // Uncheck other brands default value
         if ($input['active']) {

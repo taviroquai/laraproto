@@ -28,7 +28,7 @@ class VisitController extends BaseController
 	{
         $visits = Visit::with('content', 'user')
                 ->addSelect(DB::raw('visits.*, count(id) as visits'))
-                ->groupBy('http_url', 'user_id', 'content_id')
+                ->groupBy('http_url', 'user_id', 'content_id', 'visits.id')
                 ->orderBy('created_at', 'desc')
                 ->get();
 		return response()->json(['data' => $visits]);
@@ -43,15 +43,20 @@ class VisitController extends BaseController
     {
         Session::put('visits_start', $date_start);
         Session::put('visits_end', $date_end);
-        $totals = DB::table('visits')
-            ->select(DB::raw('unix_timestamp(created_at) as x, count(id) as y'))
-            ->whereRaw('date(created_at) >= ? and date(created_at) <= ?', [$date_start, $date_end])
-            ->groupBy(DB::raw('day(created_at)'))
-            ->orderBy('created_at')
-            ->get();
+        $sql = "
+            SELECT x, sum(y) as y FROM (
+                SELECT date(created_at) as x, count(id) as y
+                FROM visits
+                WHERE date(created_at) >= ? and date(created_at) <= ?
+                GROUP BY visits.created_at
+            ) t1
+            GROUP BY x
+            ORDER BY date(x)
+        ";
+        $totals = DB::select(DB::raw($sql),  [$date_start, $date_end]);
         $data = [];
         foreach ($totals as $item) {
-            $data[] = [$item->x.'000', $item->y];
+            $data[] = [strtotime($item->x).'000', $item->y];
         }
         return response()->json(['data' => $data]);
     }

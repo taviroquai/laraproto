@@ -20,7 +20,9 @@ class DatabaseSeeder extends Seeder
                 [
                     'name' => 'Admin',
                     'email' => 'admin@isp.com',
-                    'password' => Hash::make('admin')
+                    'password' => Hash::make('admin'),
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -29,15 +31,21 @@ class DatabaseSeeder extends Seeder
             DB::table('roles')->insert([
                 [
                     'name' => 'Admin',
-                    'content_permission' => 'NONE'
+                    'content_permission' => 'NONE',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'Backoffice User',
-                    'content_permission' => 'ROLE'
+                    'content_permission' => 'ROLE',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'Registered',
-                    'content_permission' => 'NONE'
+                    'content_permission' => 'NONE',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -56,42 +64,58 @@ class DatabaseSeeder extends Seeder
                 [
                     'label' => 'Backoffice',
                     'http' => 'GET',
-                    'route' => 'admin'
+                    'route' => 'admin',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Pages List',
                     'http' => 'GET',
-                    'route' => 'admin/pages/list'
+                    'route' => 'admin/pages/list',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Users List',
                     'http' => 'GET',
-                    'route' => 'admin/users/list'
+                    'route' => 'admin/users/list',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Roles List',
                     'http' => 'GET',
-                    'route' => 'admin/roles/list'
+                    'route' => 'admin/roles/list',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Permissions List',
                     'http' => 'GET',
-                    'route' => 'admin/permissions/list'
+                    'route' => 'admin/permissions/list',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Site Brand',
                     'http' => 'GET',
-                    'route' => 'admin/brands/list'
+                    'route' => 'admin/brands/list',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Delete Content',
                     'http' => 'GET',
-                    'route' => 'admin/contents/delete'
+                    'route' => 'admin/contents/delete',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'label' => 'Change Content Ownership',
                     'http' => 'GET',
-                    'route' => 'admin/contents/ownership'
+                    'route' => 'admin/contents/ownership',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -150,7 +174,9 @@ class DatabaseSeeder extends Seeder
                     'keywords' => 'keyword',
                     'author' => 'author',
                     'logo' => 'picture.png',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -166,7 +192,9 @@ class DatabaseSeeder extends Seeder
                     'seo_image' => 'picture.png',
                     'content' => '<p>Content...<br></p>',
                     'publish_start' => '2015-07-01',
-                    'role_permission' => 'NONE'
+                    'role_permission' => 'NONE',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -176,7 +204,9 @@ class DatabaseSeeder extends Seeder
                 [
                     'content_id' => 1,
                     'start' => '2015-07-1',
-                    'end' => '2015-07-2'
+                    'end' => '2015-07-2',
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -188,7 +218,9 @@ class DatabaseSeeder extends Seeder
                     'address' => 'Lisbon, Portugal',
                     'lat' => '38.7222524',
                     'lon' => '-9.139336599999979',
-                    'zoom' => 5
+                    'zoom' => 5,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }
@@ -198,27 +230,37 @@ class DatabaseSeeder extends Seeder
                 [
                     'name' => 'demo_notfound',
                     'route' => 'page/notfound',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'demo_home',
                     'route' => '/',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'demo_content',
                     'route' => '{slug}',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'demo_events',
                     'route' => 'demo/events',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ],
                 [
                     'name' => 'demo_map',
                     'route' => 'demo/map',
-                    'active' => 1
+                    'active' => 1,
+                    'created_at' => DB::raw('now()'),
+                    'updated_at' => DB::raw('now()')
                 ]
             ]);
         }

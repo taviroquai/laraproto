@@ -60,7 +60,7 @@
                     "orderable": false,
                     "searchable": false,
                     "render": function ( data, type, full, meta ) {
-                        return full.active === '1' ? '<i class="fa fa-star"></i>' : '';
+                        return (full.active === '1' || full.active === true) ? '<i class="fa fa-star"></i>' : '';
                     }
                 },
                 {

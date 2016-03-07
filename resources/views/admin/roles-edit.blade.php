@@ -53,11 +53,11 @@
                         <td>{{ $item->label }}</td>
                         <td>
                             <label class="radio-inline">
-                                <input required type="radio" name="permissions[{{ $item->id }}]['access']" value="deny" 
+                                <input required type="radio" name="permissions[{{ $item->id }}]['access']" value="DENY" 
                                     @if(!$role->isPermissionAllow($item)) checked="checked" @endif> {{ trans('backoffice.deny') }}
                             </label>
                             <label class="radio-inline">
-                                <input type="radio" name="permissions[{{ $item->id }}]['access']" value="allow"
+                                <input type="radio" name="permissions[{{ $item->id }}]['access']" value="ALLOW"
                                     @if($role->isPermissionAllow($item)) checked="checked" @endif> {{ trans('backoffice.allow') }}
                             </label>
                         </td>

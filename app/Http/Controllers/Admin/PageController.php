@@ -39,6 +39,7 @@ class PageController extends BaseController
     {
         $input = \Input::except('_token');
         $input['name'] = strtolower($input['name']);
+        $input['active'] = empty($input['active']) ? 0 : 1;
         
         $validator = \Validator::make($input, [
             'name' => 'required|alpha_dash|max:255|unique:pages'.(!empty($input['id']) ? ',name,'.$input['id'] : ''),

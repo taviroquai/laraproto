@@ -18,7 +18,7 @@ class Brand extends Model
      *
      * @var array
      */
-    protected $fillable = ['name', 'slogan', 'description', 'author', 'keywords', 'default', 'css', 'config'];
+    protected $fillable = ['name', 'active', 'slogan', 'description', 'author', 'keywords', 'default', 'css', 'config'];
     
     /**
      * Path for brand images

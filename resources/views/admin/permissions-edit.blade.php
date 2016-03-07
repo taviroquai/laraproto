@@ -33,16 +33,16 @@
             
             <div class="form-group">
                 <label class="radio-inline">
-                    <input required type="radio" name="http" value="get" checked> {{ trans('backoffice.http_get') }}
+                    <input required type="radio" name="http" value="GET" checked> {{ trans('backoffice.http_get') }}
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="http" value="post"> {{ trans('backoffice.http_post') }}
+                    <input type="radio" name="http" value="POST"> {{ trans('backoffice.http_post') }}
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="http" value="put"> {{ trans('backoffice.http_put') }}
+                    <input type="radio" name="http" value="PUT"> {{ trans('backoffice.http_put') }}
                 </label>
                 <label class="radio-inline">
-                    <input type="radio" name="http" value="delete"> {{ trans('backoffice.http_delete') }}
+                    <input type="radio" name="http" value="DELETE"> {{ trans('backoffice.http_delete') }}
                 </label>
             </div>
 
