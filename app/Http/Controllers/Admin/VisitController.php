@@ -47,6 +47,7 @@ class VisitController extends BaseController
             ->select(DB::raw('unix_timestamp(created_at) as x, count(id) as y'))
             ->whereRaw('date(created_at) >= ? and date(created_at) <= ?', [$date_start, $date_end])
             ->groupBy(DB::raw('day(created_at)'))
+            ->orderBy('created_at')
             ->get();
         $data = [];
         foreach ($totals as $item) {
